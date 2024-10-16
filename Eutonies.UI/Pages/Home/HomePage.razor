@@ -1,0 +1,15 @@
+﻿@page "/"
+
+<PageTitle>Eutonies</PageTitle>
+
+<div class="eutonies-home">
+    <div class="eutonies-home-bg"></div>
+    <div class="eutonies-home-container">
+        <div class="eutonies-home-intro">I just like the way it sounds</div>
+        <div class="eutonies-home-explain">If you see a pleasant sounding word, CLICK IT!</div>
+        @foreach(var wd in _words)
+        {
+            <HomeWordComponent InitialDelaySeconds="@(wd.InitialDelaySeconds)" SecondsToAnimate="@(wd.AnimationTime)" Word="@(wd.Word)"></HomeWordComponent>
+        }
+    </div>
+</div>

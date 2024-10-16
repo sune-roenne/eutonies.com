@@ -1,0 +1,66 @@
+﻿.eutonies-home {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+.eutonies-home-bg {
+    position: absolute;
+    z-index: 2;
+    background-image: url('images/HomeBackground.webp');
+    background-repeat: repeat-x;
+    animation: bg-slide 1000s linear infinite;
+    height: 2048px;
+    width: 12288px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+.eutonies-home-container {
+    position: absolute;
+    z-index: 100;
+    font-family: 'Papyrus';
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 30px;
+}
+
+.eutonies-home-intro {
+    font-size: 30pt;
+    font-weight: 900;
+}
+
+.eutonies-home-explain {
+    display: none;
+    font-size: 16pt;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+@keyframes bg-slide {
+    0% {
+        transform: translate3d(0px, 0px, 0px);
+        filter: blur(1px);
+    }
+    20% {
+        filter: blur(1.5px);
+    }
+    40% {
+        filter: blur(2px);
+    }
+    60% {
+        filter: blur(1.5px);
+    }
+    100% {
+        transform: translate3d(-4096px,0px,0px);
+        filter: blur(1px);
+    }
+}
