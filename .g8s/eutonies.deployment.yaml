@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eutonies
+  labels:
+    app: eutonies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eutonies
+  template:
+    metadata:
+      labels:
+        app: eutonies
+    spec:
+      containers:
+      - name: eutonies
+        image: docker.io/suneroenne/eutonies:1.0.17
+        ports:
+        - containerPort: 8080
+          name: http-eutonies
