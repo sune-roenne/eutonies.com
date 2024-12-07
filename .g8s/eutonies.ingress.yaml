@@ -18,6 +18,21 @@ spec:
             name: sunedoes
             port: 
               number: 80
+      - path: /fob/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: fob
+            port: 
+              number: 80
+      - path: /dci/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: dcisocial
+            port: 
+              number: 80
+
       - path: /(.*)
         pathType: ImplementationSpecific
         backend:
