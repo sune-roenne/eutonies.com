@@ -1,8 +1,23 @@
 kind: ConfigMap
 apiVersion: v1
+data:
+  X-Different-Name: "true"
+  X-Request-Start: t=${msec}
+  X-Using-Nginx-Controller: "true"
+  X-Forwarded-Proto: https
+  X-Original-Proto: https
+metadata:
+  name: eutonies-headers
+  namespace: ingress-nginx
+
+
+---
+kind: ConfigMap
+apiVersion: v1
 metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 data:
   hsts: "false"  
   allow-snippet-annotations: "true"
+  proxy-set-headers: "ingress-nginx/eutonies-headers"

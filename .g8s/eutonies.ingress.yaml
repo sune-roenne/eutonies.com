@@ -5,7 +5,12 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/location-snippet: "proxy_set_header X-Forwarded-Proto https;"    
+#    nginx.ingress.kubernetes.io/location-snippet: proxy_set_header X-Forwarded-Proto https;    
+#    nginx.ingress.kubernetes.io/location-snippet: |
+#      proxy_set_header X-Forwarded-Proto https;
+#      proxy_set_header Host $host:$server_port;
+#      proxy_set_header X-Real-IP $remote_addr;
+#      proxy_set_header X-Forwarded-For $remote_addr;    
 spec:
   ingressClassName: nginx
   rules:
