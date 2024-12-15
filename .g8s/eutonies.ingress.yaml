@@ -25,7 +25,7 @@ spec:
             name: fob
             port: 
               number: 80
-      - path: /dci/(.*)
+      - path: /blackops2024/(.*)
         pathType: ImplementationSpecific
         backend:
           service:
