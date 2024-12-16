@@ -30,7 +30,7 @@ spec:
             name: fob
             port: 
               number: 80
-      - path: /dci/(.*)
+      - path: /dci/?(.*)
         pathType: ImplementationSpecific
         backend:
           service:
