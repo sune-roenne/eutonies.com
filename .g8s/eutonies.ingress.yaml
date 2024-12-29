@@ -37,7 +37,14 @@ spec:
             name: sunedoes
             port: 
               number: 80
-
+      paths:
+      - path: /malarkey/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: malarkey
+            port: 
+              number: 80
       - path: /(.*)
         pathType: ImplementationSpecific
         backend:
