@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eutonies-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/location-snippet: proxy_set_header X-Forwarded-Proto https;    
+#    nginx.ingress.kubernetes.io/location-snippet: |
+#      proxy_set_header X-Forwarded-Proto https;
+#      proxy_set_header Host $host:$server_port;
+#      proxy_set_header X-Real-IP $remote_addr;
+#      proxy_set_header X-Forwarded-For $remote_addr;    
+    nginx.ingress.kubernetes.io/location-snippet: server_name   eutonies.com *.eutonies.com;      
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /sune-does/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: sunedoes
+            port: 
+              number: 80
+      - path: /fob/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: fob
+            port: 
+              number: 80
+      - path: /blackops2024/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: dcisocial
+            port: 
+              number: 80
+      - path: /oauth2-signin/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: dcisocial
+            port: 
+              number: 80
+            
+      - path: /contest/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: dcisocial
+            port: 
+              number: 80
+            
+
+      - path: /(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: eutonies
+            port: 
+              number: 80

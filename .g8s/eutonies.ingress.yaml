@@ -5,12 +5,26 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-#    nginx.ingress.kubernetes.io/location-snippet: proxy_set_header X-Forwarded-Proto https;    
-#    nginx.ingress.kubernetes.io/location-snippet: |
-#      proxy_set_header X-Forwarded-Proto https;
-#      proxy_set_header Host $host:$server_port;
-#      proxy_set_header X-Real-IP $remote_addr;
-#      proxy_set_header X-Forwarded-For $remote_addr;    
+    nginx.ingress.kubernetes.io/location-snippet: |
+      proxy_set_header X-Forwarded-Proto https;
+      server_name   eutonies.com *.eutonies.com;      
+
+      $malarkey_profile_token = $arg_malarkeyprofiletoken;
+      if $malarkey_profile_token != nil then 
+         set_header Malarkey-Profile-Token $malarkey_profile_token
+      $malarkey_identity_token = $arg_malarkeyidentitytoken;
+      if $malarkey_profile_token != nil then 
+         set_header Malarkey-Identity-Token $malarkey_identity_token
+
+    nginx.ingress.kubernetes.io/server-snippet: |
+        set $agentflag 0;
+
+        if ($http_user_agent ~* "(Mobile)" ){
+          set $agentflag 1;
+        }
+
+
+
 spec:
   ingressClassName: nginx
   rules:
@@ -21,20 +35,6 @@ spec:
         backend:
           service:
             name: sunedoes
-            port: 
-              number: 80
-      - path: /fob/(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: fob
-            port: 
-              number: 80
-      - path: /blackops2024/(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: dcisocial
             port: 
               number: 80
 
