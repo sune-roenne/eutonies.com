@@ -23,8 +23,6 @@ metadata:
           set $agentflag 1;
         }
 
-
-
 spec:
   ingressClassName: nginx
   rules:
@@ -37,7 +35,6 @@ spec:
             name: sunedoes
             port: 
               number: 80
-      paths:
       - path: /malarkey/(.*)
         pathType: ImplementationSpecific
         backend:
